@@ -47,9 +47,13 @@ module.exports = {
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }
       },
-      "^/gateway": {
+      // "^/gateway": {
+      [process.env.VUE_APP_JCHL_API]: {
         target: 'https://tjspt.jchl.com',
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: {
+          ['^/' + process.env.VUE_APP_JCHL_API]: ''
+        }
       }
     },
     after: require('./mock/mock-server.js')

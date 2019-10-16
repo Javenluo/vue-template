@@ -1,5 +1,15 @@
 <template>
   <div class="app-container">
+    <div>
+      <span class="demonstration">带快捷选项</span>
+      <el-date-picker
+        v-model="value2"
+        align="right"
+        type="date"
+        placeholder="选择日期"
+        :picker-options="pickerOptions"
+      />
+    </div>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -9,14 +19,10 @@
       highlight-current-row
     >
       <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
+        <template slot-scope="scope">{{ scope.$index }}</template>
       </el-table-column>
       <el-table-column label="Title">
-        <template slot-scope="scope">
-          {{ scope.row.title }}
-        </template>
+        <template slot-scope="scope">{{ scope.row.title }}</template>
       </el-table-column>
       <el-table-column label="Author" width="110" align="center">
         <template slot-scope="scope">
@@ -24,9 +30,7 @@
         </template>
       </el-table-column>
       <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
+        <template slot-scope="scope">{{ scope.row.pageviews }}</template>
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
@@ -44,37 +48,67 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getList } from "@/views/table/api";
 
 export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
+        published: "success",
+        draft: "gray",
+        deleted: "danger"
+      };
+      return statusMap[status];
     }
   },
   data() {
     return {
       list: null,
-      listLoading: true
-    }
+      listLoading: true,
+      value1: "",
+      value2: "",
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+        },
+        shortcuts: [
+          {
+            text: "今天",
+            onClick(picker) {
+              picker.$emit("pick", new Date());
+            }
+          },
+          {
+            text: "昨天",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit("pick", date);
+            }
+          },
+          {
+            text: "一周前",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", date);
+            }
+          }
+        ]
+      }
+    };
   },
   created() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     fetchData() {
-      this.listLoading = true
+      this.listLoading = true;
       getList().then(response => {
-        this.list = response.body.items
-        console.log('ssssss', this.list);
-        this.listLoading = false
-      })
+        this.list = response.body.items;
+        this.listLoading = false;
+      });
     }
   }
-}
+};
 </script>

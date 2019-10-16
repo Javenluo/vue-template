@@ -23,11 +23,12 @@ const mutations = {
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    const { username, password } = userInfo
+    const { loginName, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
+      login({ loginName: loginName.trim(), password: password }).then(response => {
+        const { body: data } = response
         commit('SET_TOKEN', data.token)
+        commit('tax_user/TAX_SET_USER_INFO', data, { root: true })
         setToken(data.token)
         resolve()
       }).catch(error => {
@@ -40,7 +41,7 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
-        const { data } = response
+        const { body: data } = response
 
         if (!data) {
           reject('Verification -- failed, please Login again.')

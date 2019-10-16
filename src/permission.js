@@ -1,20 +1,20 @@
-// import { store } from '@ttkv'
 import { Message } from '@ttk/vue-ui'
 import { router, store } from '@ttkv'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@ttkv/lib/utils/auth' // get token from cookie
+import { getToken } from '@ttkv/lib/utils/auth'
 import getPageTitle from '@ttkv/lib/utils/get-page-title'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login'] // no redirect whitelist
+// 免登录白名单
+const whiteList = ['/login'];
 
 router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
   document.title = getPageTitle(to.meta.title)
 
-  // determine whether the user has logged in
+  // 确定用户是否已经登录
   const hasToken = getToken()
   if (hasToken) {
     if (to.path === '/login') {
@@ -41,11 +41,10 @@ router.beforeEach(async (to, from, next) => {
   } else {
     /* has no token*/
     if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
+      // 如果当前访问路径在免登陆白名单中，将继续访问。
       next()
     } else {
-      await store.dispatch('tax_user/resetToken')
-      // other pages that do not have permission to access are redirected to the login page.
+      await store.dispatch('tax_user/resetToken') // 清除本地缓存
       next(`/login?redirect=${to.path}`)
       NProgress.done()
     }

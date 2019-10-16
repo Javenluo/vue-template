@@ -2,8 +2,9 @@ import request from '@ttkv/lib/utils/request'
 
 export function getList(params) {
   return request({
-    url: 'dev-api/table/list',
+    url: `/table/list`,
     method: 'get',
-    params
+    params,
+    baseURL: process.env.VUE_APP_BASE_API
   })
 }
