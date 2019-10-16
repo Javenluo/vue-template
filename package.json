@@ -1,6 +1,6 @@
 {
   "name": "@ttk/vue-template",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "> TODO: description",
   "author": "陈坚平 <chenjianping@gmail.com>",
   "homepage": "https://github.com/fx-mobile",
@@ -19,8 +19,8 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
-    "@ttk/vue": "^1.0.3",
-    "@ttk/vue-ui": "^1.0.2",
+    "@ttk/vue": "*",
+    "@ttk/vue-ui": "*",
     "axios": "0.18.1",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
