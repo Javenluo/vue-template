@@ -6,7 +6,7 @@ export default {
   children: [
     {
       path: 'index',
-      component: () => import('@/views/tree'),
+      component: () => import('@/pages/tree'),
       name: 'Fomr',
       meta: { title: '树', icon: 'document' }
     }

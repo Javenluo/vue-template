@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { getList } from "@/views/table/api";
+import { getList } from "./api";
 
 export default {
   filters: {

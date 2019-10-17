@@ -1,6 +1,6 @@
 // 修改当前path为login可覆盖tax-group-app中的默认路由
 export default {
-  path: '/login',
+  path: '/temp',
   name: 'shop',
-  component: () => import('@/views/login')
+  component: () => import('@/pages/0-login')
 }

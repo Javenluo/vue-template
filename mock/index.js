@@ -1,6 +1,5 @@
 import Mock from 'mockjs'
 import { param2Obj } from '@ttk/vue/lib/utils'
-console.log('=========', param2Obj);
 import user from './user'
 import table from './table'
 

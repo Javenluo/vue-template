@@ -19,7 +19,7 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
-    "@ttk/vue": "*",
+    "@ttk/vue": "https://github.com/fx-mobile/vue.git",
     "@ttk/vue-ui": "*",
     "axios": "0.18.1",
     "js-cookie": "2.2.0",
