@@ -8,7 +8,7 @@ export default {
       path: 'index',
       component: () => import('@/pages/tree'),
       name: 'Fomr',
-      meta: { title: '树', icon: 'document' }
+      meta: { title: '树', icon: 'fsicon-tree-dot' }
     }
   ]
 }

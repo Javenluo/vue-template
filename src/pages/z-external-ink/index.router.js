@@ -5,7 +5,7 @@ export default {
   children: [
     {
       path: 'https://github.com/fx-mobile',
-      meta: { title: 'External Link', icon: 'link' }
+      meta: { title: '外部链接', icon: 'fsicon-jiebangnashuiren' }
     }
   ]
 }

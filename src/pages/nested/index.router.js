@@ -6,7 +6,7 @@ export default {
   name: 'Nested',
   meta: {
     title: 'Nested Routes',
-    icon: 's-unfold'
+    icon: 'fsicon-weibiaoti25'
   },
   children: [
     {
