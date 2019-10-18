@@ -24,6 +24,7 @@ router.beforeEach(async (to, from, next) => {
       const hasGetUserInfo = localStorage.getItem('userInfo')
       const _router = await store.dispatch('tax_user/getNav')
       if (hasGetUserInfo && _router) {
+        if (store.tax_user && !store.tax_user.info) await store.commit('tax_user/TAX_SET_USER_INFO_FROM_LOCAL')
         next()
       } else {
         store.commit("tax_user/TAX_SET_TOKEN", '')

@@ -115,9 +115,8 @@ export default {
         if (valid) {
           this.loading = true;
           this.$store
-            .dispatch("user/login", this.loginForm)
+            .dispatch("tax_user/login", this.loginForm)
             .then(() => {
-              console.log("----------ssss", this.redirect);
               this.$router.push({ path: this.redirect || "/" });
               this.loading = false;
             })
@@ -125,7 +124,6 @@ export default {
               this.loading = false;
             });
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

@@ -1,6 +1,6 @@
 # @ttk/vue-template
 
-> 这是一个极简的 tax group admin 管理后台。它只包含了 @ttk/vue-ui & axios & iconfont & permission control & lint, Mock-server，这些搭建后台必要的东西。
+> 这是一个极简的 @TTK/Vue admin 管理后台。它只包含了 @ttk/vue-ui & axios & iconfont & permission control & lint, Mock-server，这些搭建后台必要的东西。
 
 
 目前版本为 `v0.1` 基于 `vue-cli` 进行构建，它依赖 vue-cli.

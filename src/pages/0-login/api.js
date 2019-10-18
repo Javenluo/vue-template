@@ -1,8 +1,6 @@
 import request from '@ttkv/lib/utils/request'
 
 export function login(data) {
-  console.log(',jjjjjjjjjjjj', data);
-
   return request({
     url: `${process.env.VUE_APP_JCHL_API}/org/back/userService/loginExt?appId=10001006&requestId=2c3b44751ae520bcfe56a7b782cb548b`,
     method: 'post',
