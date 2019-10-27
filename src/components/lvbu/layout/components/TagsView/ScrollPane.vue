@@ -43,7 +43,6 @@ export default {
       if (this.trace > 0) {
         this.trace = 0
       }
-
     },
     handleScroll(e) {
       const eventDelta = e.wheelDelta || -e.deltaY * 40;

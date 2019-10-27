@@ -9,6 +9,7 @@
         placeholder="选择日期"
         :picker-options="pickerOptions"
       />
+      <el-button @click="testFun('你好 测试者')">注入函数测试</el-button>
     </div>
     <el-table
       v-loading="listLoading"
@@ -49,6 +50,7 @@
 
 <script>
 import { getList } from "./api";
+import { SingletonApp } from "@ttkv";
 
 export default {
   filters: {
@@ -102,6 +104,10 @@ export default {
     this.fetchData();
   },
   methods: {
+    testFun(str){
+      const app = SingletonApp.getInstance();
+      app.testFun(str);
+    },
     fetchData() {
       this.listLoading = true;
       getList().then(response => {
