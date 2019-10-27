@@ -88,8 +88,6 @@
   </el-container>
 </template>
 
-
-
 <script>
 import { validPhone } from "@ttkv/lib/utils/validate";
 export default {

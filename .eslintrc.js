@@ -33,13 +33,15 @@ module.exports = {
     "vue/multiline-html-element-content-newline":"off",
     "vue/name-property-casing": ["error", "PascalCase"],
     "vue/no-v-html": "off",
+    "vue/html-self-closing": 0,
+    "vue/html-self-closing": 0,
     'accessor-pairs': 2,
     'arrow-spacing': [2, {
       'before': true,
       'after': true
     }],
     'constructor-super': 2,
-    'comma-dangle': [2, 'never'],
+    'comma-dangle': [0, 'never'],
     'block-spacing': [2, 'always'], // 强制在单行代码块中使用一致的空格 
     'brace-style': [2, '1tbs', { //强制在代码块中使用一致的大括号风格 
       'allowSingleLine': true

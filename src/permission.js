@@ -4,13 +4,10 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@ttkv/lib/utils/auth'
 import getPageTitle from '@ttkv/lib/utils/get-page-title'
-import { SingletonApp } from '@ttkv'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
-console.log('eeee');
 // 免登录白名单
 const whiteList = ['/login', '/404'];
-const app = SingletonApp.getInstance()
 router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
@@ -46,7 +43,6 @@ router.beforeEach(async (to, from, next) => {
       // 如果当前访问路径在免登陆白名单中，将继续访问。
       next()
     } else {
-      // const routes = app.getRouters()
       if (!constantRoutes.some(item => item.path === '/login')) {
         console.error('路由"/login"未定义, 请先定义路由')
       } else {
