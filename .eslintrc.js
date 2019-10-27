@@ -115,7 +115,7 @@ module.exports = {
     'no-self-compare': 2, // 禁止自身比较 
     'no-sequences': 2, // 禁用逗号操作符 
     'no-spaced-func': 2, // 禁止 function 标识符和括号之间出现空格 
-    'no-trailing-spaces': 2, // 禁用行尾空格 
+    // 'no-trailing-spaces': 2, // 禁用行尾空格 
     'no-undef': 2, // 禁用未声明的变量，除非它们在 /global / 注释中被提到 
     'no-undef-init': 2, // 禁止将变量初始化为 undefined 
     'no-unmodified-loop-condition': 2, // 禁用一成不变的循环条件 

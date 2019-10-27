@@ -1,50 +1,49 @@
 <template>
   <div class="tags-scroll-con">
     <span class="tab-prev" @click.prevent="scroll($event, 'prev')">
-      <i class="icon iconfont fsicon-xiangzuo"></i>
+      <i class="icon iconfont fsicon-xiangzuo" />
     </span>
-    <!-- <div class="scroll-container">
-      <div class="items">
+    <span class="tab-next" @click.prevent="scroll($event, 'next')">
+      <i class="icon iconfont fsicon-xiangyou" />
+    </span>
+    <div ref="scrollWrapper" class="scroll-container">
+      <div ref="scrollContainer" class="items" :style="{transform: `translateX(${trace}px)`}">
         <slot />
       </div>
-    </div> -->
-    <span class="tab-next" @click.prevent="scroll($event, 'next')">
-      <i class="icon iconfont fsicon-xiangyou"></i>
-    </span>
-    <el-scrollbar
-      ref="scrollContainer"
-      :vertical="false"
-      class="scroll-container"
-      @wheel.native.prevent="handleScroll"
-    >
-    <slot />
-    </el-scrollbar>
+    </div>
   </div>
 </template>
 
 <script>
-const tagAndTagSpacing = 4; // tagAndTagSpacing
+// const tagAndTagSpacing = 4; // tagAndTagSpacing
 
 export default {
   name: "ScrollPane",
   data() {
     return {
-      left: 0
+      left: 0,
+      trace: 0
     };
   },
   computed: {
     scrollWrapper() {
-      console.log("jjeeqqqq", this.$refs.scrollContainer.$refs);
-      return this.$refs.scrollContainer.$refs.wrap;
+      // return this.$refs.scrollContainer.$refs.wrap;
+      return this.$refs.scrollWrapper;
     }
   },
   methods: {
-    // transform: translateX(-1013px);
     scroll(event, name) {
-      let transSpace = 100;
-      if (name === "prev") transSpace = -100;
-      const $scrollWrapper = this.scrollWrapper;
-      $scrollWrapper.scrollLeft = $scrollWrapper.scrollLeft + transSpace;
+      const $container = this.$refs.scrollContainer;
+      let transSpace = 150;
+      if (name === "prev") transSpace = -150;
+      this.trace = this.trace + transSpace;
+      if (this.trace < -$container.offsetWidth + this.scrollWrapper.offsetWidth) {
+        this.trace = -$container.offsetWidth + this.scrollWrapper.offsetWidth
+      } 
+      if (this.trace > 0) {
+        this.trace = 0
+      }
+
     },
     handleScroll(e) {
       const eventDelta = e.wheelDelta || -e.deltaY * 40;
@@ -52,9 +51,10 @@ export default {
       $scrollWrapper.scrollLeft = $scrollWrapper.scrollLeft + eventDelta / 4;
     },
     moveToTarget(currentTag) {
-      const $container = this.$refs.scrollContainer.$el;
+      const $container = this.$refs.scrollContainer; // .$el;
+      // debugger;
       const $containerWidth = $container.offsetWidth;
-      const $scrollWrapper = this.scrollWrapper;
+      // const $scrollWrapper = this.scrollWrapper;
       const tagList = this.$parent.$refs.tag;
 
       let firstTag = null;
@@ -65,33 +65,29 @@ export default {
         firstTag = tagList[0];
         lastTag = tagList[tagList.length - 1];
       }
-
-      if (firstTag === currentTag) {
-        $scrollWrapper.scrollLeft = 0;
+      if (
+        firstTag === currentTag ||
+        this.scrollWrapper.offsetWidth > $containerWidth
+      ) {
+        this.trace = 0;
       } else if (lastTag === currentTag) {
-        $scrollWrapper.scrollLeft =
-          $scrollWrapper.scrollWidth - $containerWidth;
+        this.trace = this.scrollWrapper.offsetWidth - $containerWidth;
       } else {
-        // find preTag and nextTag
-        const currentIndex = tagList.findIndex(item => item === currentTag);
-        const prevTag = tagList[currentIndex - 1];
-        const nextTag = tagList[currentIndex + 1];
+        // // find preTag and nextTag
+        // const currentIndex = tagList.findIndex(item => item === currentTag);
+        // const prevTag = tagList[currentIndex - 1];
+        // const nextTag = tagList[currentIndex + 1];
+        const cur = currentTag.$el;
 
-        // the tag's offsetLeft after of nextTag
-        const afterNextTagOffsetLeft =
-          nextTag.$el.offsetLeft + nextTag.$el.offsetWidth + tagAndTagSpacing;
-
-        // the tag's offsetLeft before of prevTag
-        const beforePrevTagOffsetLeft =
-          prevTag.$el.offsetLeft - tagAndTagSpacing;
-
-        if (
-          afterNextTagOffsetLeft >
-          $scrollWrapper.scrollLeft + $containerWidth
+        if ($containerWidth - cur.offsetLeft < this.scrollWrapper.offsetWidth) {
+          this.trace = this.scrollWrapper.offsetWidth - $containerWidth;
+        } else if (
+          cur.offsetLeft + cur.offsetWidth <
+          this.scrollWrapper.offsetWidth
         ) {
-          $scrollWrapper.scrollLeft = afterNextTagOffsetLeft - $containerWidth;
-        } else if (beforePrevTagOffsetLeft < $scrollWrapper.scrollLeft) {
-          $scrollWrapper.scrollLeft = beforePrevTagOffsetLeft;
+          this.trace = 0;
+        } else {
+          this.trace = -cur.offsetLeft + this.scrollWrapper.offsetWidth / 2;
         }
       }
     }
@@ -129,16 +125,9 @@ export default {
     overflow: hidden;
     z-index: 1;
     width: 100%;
-    .items{
+    .items {
+      transition: transform 0.3s;
       display: inline-block;
-      // /deep/ {
-      //   .el-scrollbar__bar {
-      //     bottom: 0px;
-      //   }
-      //   .el-scrollbar__wrap {
-      //     height: 49px;
-      //   }
-      // }
     }
   }
 }

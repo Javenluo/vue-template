@@ -57,6 +57,36 @@ export default {
           component: () => import('@/pages/nested/menu1/menu1-1'),
           name: 'Menu1-7',
           meta: { title: 'Menu 1-7' }
+        },
+        {
+          path: 'menu1-8',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-8',
+          meta: { title: 'Menu 1-8' }
+        },
+        {
+          path: 'menu1-9',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-9',
+          meta: { title: 'Menu 1-9' }
+        },
+        {
+          path: 'menu1-10',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-10',
+          meta: { title: 'Menu 1-10' }
+        },
+        {
+          path: 'menu1-11',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-11',
+          meta: { title: 'Menu 1-11' }
+        },
+        {
+          path: 'menu1-12',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-12',
+          meta: { title: 'Menu 1-12' }
         }
       ]
     }
