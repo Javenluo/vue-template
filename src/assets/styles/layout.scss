@@ -1,0 +1,133 @@
+.app-wrapper {
+  @include clearfix;
+  height  : 100%;
+  width   : 100%;
+  position: relative;
+  top     : 0;
+
+  // box-sizing: border-box;
+  // overflow  : scroll;
+  .sidebar-container {
+    position: fixed;
+    top     : $headerHeight;
+    padding : 10px;
+
+    .tags-scroll-con {
+      &:before {
+        content: "";
+        display: table;
+      }
+
+      padding : 0 20px;
+      position: relative;
+
+      .tab-next {
+        right: 2px;
+      }
+
+      .tab-prev {
+        left: 0px;
+      }
+
+      .tab-next,
+      .tab-prev {
+        cursor     : pointer;
+        border     : 0;
+        position   : absolute;
+        text-align : center;
+        height     : auto;
+        z-index    : 2;
+        line-height: 2;
+      }
+
+      .scroll-container {
+        white-space: nowrap;
+        position   : relative;
+        overflow   : hidden;
+        z-index    : 1;
+        width      : 100%;
+
+        /deep/ {
+          .el-scrollbar__bar {
+            bottom: 0px;
+          }
+
+          .el-scrollbar__wrap {
+            height: 49px;
+          }
+        }
+      }
+    }
+
+  }
+
+  
+
+
+  .main-container {
+    min-height : 100%;
+    transition : margin-left 0.28s;
+    position   : relative;
+    padding-top: 10px;
+    margin     : $headerHeight 10px 20px $sideBarWidth;
+
+    .app-main {
+      /* 50= navbar  50  */
+      min-height: calc(100vh - 50px);
+      width     : 100%;
+      position  : relative;
+      overflow  : hidden;
+    }
+
+    .fixed-header {
+      position  : fixed;
+      top       : 0;
+      right     : 0;
+      z-index   : 2;
+      // width  : calc(100% - #{$sideBarWidth});
+      width     : 100%;
+      transition: width 0.28s;
+    }
+
+
+    &.collapse {
+      .sidebar-logo {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  // .drawer-bg {
+  //   background: #000;
+  //   opacity   : 0.3;
+  //   width     : 100%;
+  //   top       : 0;
+  //   height    : 100%;
+  //   position  : absolute;
+  //   z-index   : 999;
+  // }
+}
+
+.drawer-container {
+  padding    : 24px;
+  font-size  : 14px;
+  line-height: 1.5;
+  word-wrap  : break-word;
+
+  .drawer-title {
+    margin-bottom: 12px;
+    color        : rgba(0, 0, 0, .85);
+    font-size    : 14px;
+    line-height  : 22px;
+  }
+
+  .drawer-item {
+    color    : rgba(0, 0, 0, .65);
+    font-size: 14px;
+    padding  : 12px 0;
+  }
+
+  .drawer-switch {
+    float: right
+  }
+}

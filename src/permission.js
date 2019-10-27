@@ -4,6 +4,8 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@ttkv/lib/utils/auth'
 import getPageTitle from '@ttkv/lib/utils/get-page-title'
+import { SingletonApp } from '@ttkv'
+
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 // 免登录白名单
@@ -46,7 +48,13 @@ router.beforeEach(async (to, from, next) => {
       next()
     } else {
       await store.dispatch('tax_user/resetToken') // 清除本地缓存
-      next(`/login?redirect=${to.path}`)
+      const app = SingletonApp.getInstance()
+      const routes = app.getRouters()
+      if (!routes.some(item => item.path === '/login')) {
+        console.error('路由"/login"未定义, 请先定义路由')
+      } else {
+        next(`/login?redirect=${to.path}`)
+      }
       NProgress.done()
     }
   }

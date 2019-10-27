@@ -1,7 +1,7 @@
-import Layout from '@ttkv/packages/layout'
+import Layouts from '@/components/lvbu/layout'
 export default {
   path: '/',
-  component: Layout,
+  component: Layouts,
   redirect: '/home',
   children: [
     {

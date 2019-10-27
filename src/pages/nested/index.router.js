@@ -1,4 +1,4 @@
-import Layout from '@ttkv/packages/layout'
+import Layout from '@/components/lvbu/layout'
 export default {
   path: '/nested',
   component: Layout,
@@ -27,6 +27,36 @@ export default {
           component: () => import('@/pages/nested/menu1/menu1-1'),
           name: 'Menu1-2',
           meta: { title: 'Menu 1-2' }
+        },
+        {
+          path: 'menu1-3',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-3',
+          meta: { title: 'Menu 1-3' }
+        },
+        {
+          path: 'menu1-4',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-4',
+          meta: { title: 'Menu 1-4' }
+        },
+        {
+          path: 'menu1-5',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-5',
+          meta: { title: 'Menu 1-5' }
+        },
+        {
+          path: 'menu1-6',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-6',
+          meta: { title: 'Menu 1-6' }
+        },
+        {
+          path: 'menu1-7',
+          component: () => import('@/pages/nested/menu1/menu1-1'),
+          name: 'Menu1-7',
+          meta: { title: 'Menu 1-7' }
         }
       ]
     }
