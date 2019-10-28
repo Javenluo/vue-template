@@ -49,7 +49,7 @@ module.exports = {
       },
       // "^/gateway": {
       [process.env.VUE_APP_JCHL_API]: {
-        target: 'https://tjspt.jchl.com',
+        target: 'http://openweb-vpc-dev-jspt-paas.jchl.com',
         changeOrigin: true,
         pathRewrite: {
           ['^/' + process.env.VUE_APP_JCHL_API]: ''

@@ -9,6 +9,7 @@ import './styles.scss'
 
 import '@/permission' // permission control
 import { SingletonApp, registerFun } from '@ttkv'
+import Layout from '@/components/lvbu/layout'
 
 /**
  * MockJs 会编译到生成环境。
@@ -37,5 +38,6 @@ concatRouter(routers)
 resetRouter()
 
 const app = SingletonApp.getInstance()
+app.setLayout(Layout);
 app.start()
 app.testFun('试一试函数注入')

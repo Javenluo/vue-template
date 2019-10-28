@@ -20,7 +20,13 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done()
     } else {
       const hasGetUserInfo = localStorage.getItem('userInfo')
-      const _router = await store.dispatch('tax_user/getNav')
+      let _router = await store.dispatch('tax_user/getNav')
+      if (_router.length <= 0) {
+        _router = await store.dispatch('tax_user/fetchNav')
+        // const ttkrouter = generateRouter(_router)
+        router.addRoutes(_router)
+        store.dispatch('tax_permission/appendRoutes', _router)
+      }
       if (hasGetUserInfo && _router) {
         if (store.tax_user && !store.tax_user.info) await store.commit('tax_user/TAX_SET_USER_INFO_FROM_LOCAL')
         next()

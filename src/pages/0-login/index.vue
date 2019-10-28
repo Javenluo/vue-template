@@ -2,11 +2,7 @@
   <el-container class="tax-app-login-container">
     <el-header class="header" height="105px">
       <div class="logo">
-        <img
-          class="pic-404__child right"
-          src="@/assets/tax/images/logo/logo_gd.png"
-          alt="404"
-        />
+        <img class="pic-404__child right" src="@/assets/tax/images/logo/logo_gd.png" alt="404" />
       </div>
     </el-header>
     <el-main class="main">
@@ -89,13 +85,18 @@
 </template>
 
 <script>
-import { validPhone } from "@ttkv/lib/utils/validate";
+import { validPhone, validUsername } from "@ttkv/lib/utils/validate";
 export default {
   name: "Login",
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validPhone(value)) {
-        callback(new Error("请输入正确的用户名"));
+        if (!validUsername(value)) {
+          callback(new Error("请输入正确的用户名或手机号"));
+        } else {
+          callback();
+        }
+        callback(new Error("请输入正确的手机号"));
       } else {
         callback();
       }
@@ -109,8 +110,8 @@ export default {
     };
     return {
       loginForm: {
-        loginName: "13760749780",
-        password: "Lq123456",
+        loginName: "chenjianping",
+        password: "C123456",
         remember: true
       },
       loginRules: {
@@ -264,34 +265,34 @@ $cursor: #fff;
 
 <style lang="scss" scoped>
 .tax-app-login-container {
-  min-height    : 100%;
-  width         : 100%;
-  overflow      : auto;
-  display       : flex;
+  min-height: 100%;
+  width: 100%;
+  overflow: auto;
+  display: flex;
   flex-direction: column;
-  flex          : auto;
+  flex: auto;
 
   .header {
-    padding            : 10px 20px;
-    background-repeat  : no-repeat;
-    box-shadow         : 0 1px 4px rgba(0, 21, 41, 0.08);
-    background-color   : #1d82d8;
+    padding: 10px 20px;
+    background-repeat: no-repeat;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    background-color: #1d82d8;
     background-position: right;
-    background-image   : url("~@/assets/tax/images/common/logintop.png");
+    background-image: url("~@/assets/tax/images/common/logintop.png");
   }
 
   .main {
-    flex          : 1;
+    flex: 1;
     flex-direction: row;
-    position      : relative;
-    overflow      : hidden;
-    padding       : 0;
-    min-height    : 700px;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    min-height: 700px;
 
     .carousel-container {
       position: absolute;
-      width   : 100%;
-      height  : 100%;
+      width: 100%;
+      height: 100%;
 
       .carousel-item {
         height: 100%;
@@ -299,36 +300,36 @@ $cursor: #fff;
         img {
           // width        : 1009px;
           // height       : 263px;
-          position        : absolute;
-          top             : 50%;
-          left            : 50%;
-          padding-right   : 600px;
-          transform       : translate(-50%, -50%);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          padding-right: 600px;
+          transform: translate(-50%, -50%);
         }
       }
     }
 
     .form-border {
-      position : absolute;
-      width    : 600px;
+      position: absolute;
+      width: 600px;
       max-width: 100%;
-      padding  : 0px 0 0 500px;
-      margin   : 0 auto;
-      overflow : hidden;
-      z-index  : 2;
+      padding: 0px 0 0 500px;
+      margin: 0 auto;
+      overflow: hidden;
+      z-index: 2;
       transform: translate(-50%, -50%);
-      top      : 50%;
-      left     : 50%;
+      top: 50%;
+      left: 50%;
 
       .login-form {
-        border          : 1px #cccccc solid;
-        padding         : 20px;
-        border-radius   : 15px;
+        border: 1px #cccccc solid;
+        padding: 20px;
+        border-radius: 15px;
         background-color: rgba(255, 255, 255, 0.6);
 
         .tips {
-          font-size    : 14px;
-          color        : rgba(30, 28, 56, 0.815);
+          font-size: 14px;
+          color: rgba(30, 28, 56, 0.815);
           margin-bottom: 10px;
 
           span {
@@ -342,19 +343,19 @@ $cursor: #fff;
   }
 
   .footer {
-    padding         : 15px;
+    padding: 15px;
     background-color: #fff;
-    border-top      : 1px #cccccc solid;
-    text-align      : center;
-    color           : #ccc;
+    border-top: 1px #cccccc solid;
+    text-align: center;
+    color: #ccc;
   }
 
   .el-carousel__item h3 {
-    color      : #475669;
-    font-size  : 14px;
-    opacity    : 0.75;
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
     line-height: 150px;
-    margin     : 0;
+    margin: 0;
   }
 
   .el-carousel__container {

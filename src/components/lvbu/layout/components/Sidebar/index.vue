@@ -13,7 +13,7 @@
         mode="vertical"
       >
         <sidebar-item
-          v-for="route in routes"
+          v-for="route in tax_permission_routes"
           :key="route.path"
           :item="route"
           :base-path="route.path"
@@ -31,7 +31,7 @@ import SidebarItem from "./SidebarItem";
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters(["tax_sidebar"]),
+    ...mapGetters(["tax_permission_routes", "tax_sidebar"]),
     routes() {
       return this.$router.options.routes;
     },
@@ -52,7 +52,7 @@ export default {
       return "variables css";
     },
     isCollapse() {
-      return !this.tax_sidebar.opened
+      return false // this.tax_sidebar.opened
     }
   }
 };
