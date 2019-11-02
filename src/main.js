@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { concatRouter, resetRouter } from '@ttkv'
+// import { concatRouter, resetRouter } from '@ttkv'
 
 import TaxGroupUI from '@ttk/vue-ui'
 import locale from '@ttk/vue-ui/lib/locale/lang/zh-CN' // lang i18n
@@ -27,15 +27,15 @@ registerFun('testFun', (str) => {
   console.log('这是一个注册函数的示例', str)
 })
 
-// 扫描业务代码中views里的.router.js文件，并返回路由数组
-function getRouters() {
-  const routerFiles = require.context('@/pages', true, /\.router\.js$/)
-  const modules = routerFiles.keys().map((key) => routerFiles(key).default)
-  return modules
-}
-const routers = getRouters()
-concatRouter(routers)
-resetRouter()
+// // 扫描业务代码中views里的.router.js文件，并返回路由数组
+// function getRouters() {
+//   const routerFiles = require.context('@/pages', true, /\.router\.js$/)
+//   const modules = routerFiles.keys().map((key) => routerFiles(key).default)
+//   return modules
+// }
+// const routers = getRouters()
+// concatRouter(routers)
+// resetRouter()
 
 const app = SingletonApp.getInstance()
 app.setLayout(Layout);

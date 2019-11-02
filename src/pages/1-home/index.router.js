@@ -1,7 +1,7 @@
-import Layouts from '@/components/lvbu/layout'
+import Layout from '@/components/lvbu/layout'
 export default {
   path: '/',
-  component: Layouts,
+  component: Layout,
   redirect: '/home',
   children: [
     {

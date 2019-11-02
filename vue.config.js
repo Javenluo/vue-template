@@ -32,7 +32,7 @@ module.exports = {
   transpileDependencies: ['@ttk/vue'],
   devServer: {
     port: port,
-    open: true,
+    // open: true,
     overlay: {
       warnings: false,
       errors: true
@@ -49,7 +49,8 @@ module.exports = {
       },
       // "^/gateway": {
       [process.env.VUE_APP_JCHL_API]: {
-        target: 'http://openweb-vpc-dev-jspt-paas.jchl.com',
+        // target: 'http://openweb-vpc-dev-jspt-paas.jchl.com', // 内网开发环境域名
+        target: 'http://openweb-dev-jspt.jchl.com', // 外网开发环境域名
         changeOrigin: true,
         pathRewrite: {
           ['^/' + process.env.VUE_APP_JCHL_API]: ''

@@ -1,9 +1,20 @@
 import { Message } from '@ttk/vue-ui'
-import { store, router, constantRoutes } from '@ttkv'
+import { store, router, constantRoutes, concatRouter, generateRouter, postAwait } from '@ttkv'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@ttkv/lib/utils/auth'
 import getPageTitle from '@ttkv/lib/utils/get-page-title'
+
+// 扫描业务代码中views里的.router.js文件，并返回路由数组
+function getRouters() {
+  const routerFiles = require.context('@/pages', true, /\.router\.js$/)
+  const modules = routerFiles.keys().map((key) => routerFiles(key).default)
+  return modules
+}
+const routers = getRouters()
+concatRouter(routers)
+router.addRoutes(constantRoutes)
+// store.dispatch('tax_permission/appendRoutes', constantRoutes)
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 // 免登录白名单
@@ -20,12 +31,22 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done()
     } else {
       const hasGetUserInfo = localStorage.getItem('userInfo')
-      let _router = await store.dispatch('tax_user/getNav')
-      if (_router.length <= 0) {
-        _router = await store.dispatch('tax_user/fetchNav')
-        // const ttkrouter = generateRouter(_router)
-        router.addRoutes(_router)
-        store.dispatch('tax_permission/appendRoutes', _router)
+      let _router = await store.dispatch('tax_permission/getRoutes')
+      console.log(",9999", _router);
+      
+      if (!_router || _router.length <= 0) {
+        // 如果需要动态路由，使用这个逻辑
+        // const url = `${process.env.VUE_APP_BASE_API}/back/functionService/querySecFunctionNav?appId=${10001006}`
+        // const { body } = await postAwait(url, { depId: "3" }) // 获取服务端的路由表
+        // _router = generateRouter(body) // 使用@ttk/vue格式化路由
+        // router.addRoutes(_router) // 使用vue-router动态添加路由
+
+        store.dispatch('tax_permission/appendRoutes', _router) // 添加到菜单列表、左侧菜单渲染就是根据这个来做渲染的。
+
+        // _router = await store.dispatch('tax_user/fetchNav')
+        // // const ttkrouter = generateRouter(_router)
+        // router.addRoutes(_router)
+        // store.dispatch('tax_permission/appendRoutes', _router)
       }
       if (hasGetUserInfo && _router) {
         if (store.tax_user && !store.tax_user.info) await store.commit('tax_user/TAX_SET_USER_INFO_FROM_LOCAL')

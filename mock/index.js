@@ -2,10 +2,12 @@ import Mock from 'mockjs'
 import { param2Obj } from '@ttk/vue/lib/utils'
 import user from './user'
 import table from './table'
+import querySecFunctionNav from './querySecFunctionNav'
 
 const mocks = [
   ...user,
-  ...table
+  ...table,
+  ...querySecFunctionNav
 ]
 
 // for front mock
