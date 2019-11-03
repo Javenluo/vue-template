@@ -41,3 +41,7 @@ const app = SingletonApp.getInstance()
 app.setLayout(Layout);
 app.start()
 app.testFun('试一试函数注入')
+
+// import('./store/login').then(loginModule => {
+//   store.registerModule('login', loginModule)
+// })

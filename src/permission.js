@@ -32,8 +32,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
       const hasGetUserInfo = localStorage.getItem('userInfo')
       let _router = await store.dispatch('tax_permission/getRoutes')
-      console.log(",9999", _router);
-      
+
       if (!_router || _router.length <= 0) {
         // 如果需要动态路由，使用这个逻辑
         // const url = `${process.env.VUE_APP_BASE_API}/back/functionService/querySecFunctionNav?appId=${10001006}`

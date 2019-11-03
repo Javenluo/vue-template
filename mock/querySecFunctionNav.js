@@ -19,7 +19,7 @@ export default [
           code: "/org-manage",
           functionType: "dest",
           url: "/org-manage",
-          8: "1",
+          parentId: "1",
           imageUrl: "fsicon-shezhi",
           subNodeFlag: "1",
           childSecFunctioinDTOs: [{
@@ -30,7 +30,12 @@ export default [
             url: "user-dep-manager",
             parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
             imageUrl: "fsicon-wodefasong",
-            subNodeFlag: "0"
+            // subNodeFlag: "1",
+            // childSecFunctioinDTOs:[{
+            //   functionType: "button"
+            // },{
+            //   functionType: "button"
+            // }]
           }, {
             functioinId: "e71fc970852b4d9e9fad9ebe41da53cf",
             name: "机构管理",
