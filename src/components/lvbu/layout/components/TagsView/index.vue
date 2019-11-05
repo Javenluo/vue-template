@@ -49,10 +49,10 @@ export default {
   },
   computed: {
     visitedViews() {
-      return this.$store.state.tagsView.visitedViews;
+      return this.$store.state.tax_tags_view.visitedViews;
     },
     routes() {
-      return this.$store.state.permission.routes;
+      return this.$store.state.tax_permission.routes;
     }
   },
   watch: {
@@ -102,14 +102,14 @@ export default {
       for (const tag of affixTags) {
         // Must have tag name
         if (tag.name) {
-          this.$store.dispatch("tagsView/addVisitedView", tag);
+          this.$store.dispatch("tax_tags_view/addVisitedView", tag);
         }
       }
     },
     addTags() {
       const { name } = this.$route;
       if (name) {
-        this.$store.dispatch("tagsView/addView", this.$route);
+        this.$store.dispatch("tax_tags_view/addView", this.$route);
       }
       return false;
     },
@@ -121,7 +121,7 @@ export default {
             this.$refs.scrollPane.moveToTarget(tag);
             // when query is different then update
             if (tag.to.fullPath !== this.$route.fullPath) {
-              this.$store.dispatch("tagsView/updateVisitedView", this.$route);
+              this.$store.dispatch("tax_tags_view/updateVisitedView", this.$route);
             }
             break;
           }
@@ -129,7 +129,7 @@ export default {
       });
     },
     refreshSelectedTag(view) {
-      this.$store.dispatch("tagsView/delCachedView", view).then(() => {
+      this.$store.dispatch("tax_tags_view/delCachedView", view).then(() => {
         const { fullPath } = view;
         this.$nextTick(() => {
           this.$router.replace({
@@ -140,7 +140,7 @@ export default {
     },
     closeSelectedTag(view) {
       this.$store
-        .dispatch("tagsView/delView", view)
+        .dispatch("tax_tags_view/delView", view)
         .then(({ visitedViews }) => {
           if (this.isActive(view)) {
             this.toLastView(visitedViews, view);
@@ -150,13 +150,13 @@ export default {
     closeOthersTags() {
       this.$router.push(this.selectedTag);
       this.$store
-        .dispatch("tagsView/delOthersViews", this.selectedTag)
+        .dispatch("tax_tags_view/delOthersViews", this.selectedTag)
         .then(() => {
           this.moveToCurrentTag();
         });
     },
     closeAllTags(view) {
-      this.$store.dispatch("tagsView/delAllViews").then(({ visitedViews }) => {
+      this.$store.dispatch("tax_tags_view/delAllViews").then(({ visitedViews }) => {
         if (this.affixTags.some(tag => tag.path === view.path)) {
           return;
         }

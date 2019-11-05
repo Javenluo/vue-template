@@ -52,7 +52,7 @@ export default {
       return "variables css";
     },
     isCollapse() {
-      return false; // this.tax_sidebar.opened
+      return !this.tax_sidebar.opened
     }
   }
 };

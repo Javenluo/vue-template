@@ -2,7 +2,7 @@
   <div :class="{'show':show}" class="header-search">
     <div class="search">
       <el-select
-        @focus.stop="focus"
+        v-if="tax_sidebar.opened"
         ref="headerSearchSelect"
         v-model="search"
         :remote-method="querySearch"
@@ -21,23 +21,29 @@
           :label="item.title.join(' > ')"
         />
       </el-select>
-      <div class="icon-but" @click.stop="click">
+      <div class="icon-but" :class="{'active': tax_sidebar.opened}" @click.stop="click">
         <i class="icon iconfont fsicon-yihushichaxun search-icon"></i>
       </div>
     </div>
-    <div class="collection">
+    <hamburger :is-active="tax_sidebar.opened" class="collection" @toggleClick="toggleSideBar" />
+    <!-- <div class="collection">
       <i class="icon iconfont fsicon-shouqicaidan"></i>
-      <!-- <i class="icon iconfont fsicon-weibiaoti25"></i> -->
-    </div>
+      <i class="icon iconfont fsicon-weibiaoti25"></i>
+    </div>-->
   </div>
 </template>
 
 <script>
 import Fuse from "fuse.js";
+import { mapGetters } from "vuex";
 import path from "path";
+import Hamburger from "../Hamburger";
 
 export default {
   name: "HeaderSearch",
+  components: {
+    Hamburger
+  },
   data() {
     return {
       search: "",
@@ -48,6 +54,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["tax_sidebar"]),
     routes() {
       return this.$store.getters.tax_permission_routes;
     }
@@ -58,27 +65,27 @@ export default {
     },
     searchPool(list) {
       this.initFuse(list);
-    },
-    show(value) {
-      if (value) {
-        document.body.addEventListener("click", this.close);
-      } else {
-        document.body.removeEventListener("click", this.close);
-      }
     }
+    // show(value) {
+    //   if (value) {
+    //     document.body.addEventListener("click", this.close);
+    //   } else {
+    //     document.body.removeEventListener("click", this.close);
+    //   }
+    // }
   },
   mounted() {
     this.searchPool = this.generateRoutes(this.routes);
   },
   methods: {
     click() {
-      this.show = !this.show;
+      this.show = true; // !this.show;
       if (this.show) {
         this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.focus();
       }
     },
-    focus(){
-      this.show = !this.show;
+    toggleSideBar() {
+      this.$store.dispatch("tax_app/toggleSideBar");
     },
     close() {
       this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.blur();
@@ -166,17 +173,21 @@ export default {
   .search {
     position: relative;
     display: inline-block;
-    width: 180px;
+    .header-search-select{
+      width: 190px;
+    }
     .icon-but {
+      width: 180px;
       cursor: pointer;
       height: 30px;
       width: 30px;
-      position: absolute;
-      right: 0px;
       line-height: 30px;
       text-align: center;
-      display: inline-block;
-
+      &.active {
+        position: absolute;
+        right: 0px;
+        display: inline-block;
+      }
       .search-icon {
         vertical-align: middle;
       }
@@ -193,11 +204,11 @@ export default {
     margin: 0 !important;
   }
 
-  &.show {
-    .header-search-select {
-      width: 210px;
-      margin-left: 10px;
-    }
-  }
+  // &.show {
+  //   .header-search-select {
+  //     width: 210px;
+  //     margin-left: 10px;
+  //   }
+  // }
 }
 </style>
