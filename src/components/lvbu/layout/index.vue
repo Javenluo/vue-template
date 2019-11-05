@@ -86,7 +86,9 @@ export default {
   .sidebar-container {
     position: fixed;
     top: $headerHeight;
-    padding: 10px;
+    border-right: 1px solid #c5c5c5;
+    background: white;
+    // padding: 10px;
 
     .tags-scroll-con {
       &:before {

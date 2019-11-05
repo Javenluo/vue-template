@@ -22,6 +22,7 @@
     "@ttk/vue-ui": "*",
     "axios": "0.18.1",
     "clipboard": "^2.0.4",
+    "fuse.js": "^3.4.5",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",

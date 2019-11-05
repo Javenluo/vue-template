@@ -1,7 +1,7 @@
 import Layout from '@/components/lvbu/layout'
 export default {
   path: '/tree',
-  name: 'tree',
+  name: '树',
   component: Layout,
   children: [
     {

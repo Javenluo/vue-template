@@ -68,7 +68,7 @@ export default {
         }
       })
 
-      // When there is only one child router, the child router is displayed by default
+      // 如果菜单子级只有一个，只显示子菜单。
       if (showingChildren.length === 1) {
         return true
       }

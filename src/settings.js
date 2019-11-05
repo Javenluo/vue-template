@@ -1,38 +1,32 @@
-/*
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2019-09-10 10:58:06
- * @LastEditTime: 2019-09-11 14:20:10
- * @LastEditors: Please set LastEditors
- */
+
 module.exports = {
   title: '税局',
 
   /**
    * @type {boolean} true | false
-   * @description Whether show the settings right-panel
+   * @description 显示右侧菜单
    */
   showSettings: true,
 
   /**
    * @type {boolean} true | false
-   * @description Whether need tagsView
+   * @description 显示标签
    */
   tagsView: true,
 
   /**
    * @type {boolean} true | false
-   * @description Whether fix the header
+   * @description 固定头部，未兼容
    */
-  fixedHeader: true,
+  // fixedHeader: true,
 
   /**
    * @type {boolean} true | false
-   * @description Whether show the logo in sidebar
+   * @description 在菜单上显示搜索
    */
-  sidebarLogo: true,
-
   sidebarSearch: true,
+
+  fixedMenue: false,
 
   /**
    * @type {string | array} 'production' | ['production', 'development']

@@ -1,6 +1,6 @@
 <template>
-  <div class="tax-app-sidebar has-logo">
-    <logo v-if="showLogo" :collapse="isCollapse" />
+  <div class="tax-app-sidebar" :class="{'has-search': showLogo}">
+    <search v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
@@ -25,11 +25,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Logo from "./Logo";
+import Search from "@/components/lvbu/HeaderSearch";
 import SidebarItem from "./SidebarItem";
 
 export default {
-  components: { SidebarItem, Logo },
+  components: { SidebarItem, Search },
   computed: {
     ...mapGetters(["tax_permission_routes", "tax_sidebar"]),
     routes() {
@@ -46,13 +46,13 @@ export default {
       return path;
     },
     showLogo() {
-      return this.$store.state.tax_settings.sidebarLogo;
+      return this.$store.state.tax_settings.sidebarSearch;
     },
     variables() {
       return "variables css";
     },
     isCollapse() {
-      return false // this.tax_sidebar.opened
+      return false; // this.tax_sidebar.opened
     }
   }
 };

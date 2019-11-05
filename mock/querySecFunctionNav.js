@@ -44,7 +44,7 @@ export default [
               name: "菜单管理1",
               code: "/config-manager/project-manager",
               functionType: "menu",
-              url: "user-dep-manager",
+              url: "user-dep-manager1",
               parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
               subNodeFlag: "1",
               childSecFunctioinDTOs: [{
@@ -52,7 +52,7 @@ export default [
                 name: "菜单管理1-1",
                 code: "/config-manager/project-manager",
                 functionType: "menu",
-                url: "user-dep-manager",
+                url: "user-dep-manager1-1",
                 parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
                 subNodeFlag: "0",
               }, {
@@ -60,16 +60,16 @@ export default [
                 name: "菜单管理1-2",
                 code: "/config-manager/project-manager",
                 functionType: "menu",
-                url: "user-dep-manager",
+                url: "user-dep-manager2",
                 parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
                 subNodeFlag: "0",
               }]
             }, {
               functioinId: "4175e7428ce7408288c24b80689be30f",
-              name: "菜单管理2",
+              name: "菜单管理-2",
               code: "/config-manager/project-manager",
               functionType: "menu",
-              url: "user-dep-manager",
+              url: "user-dep-manager2",
               parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
               subNodeFlag: "1",
               childSecFunctioinDTOs: [{
@@ -77,7 +77,7 @@ export default [
                 name: "菜单管理2-1",
                 code: "/config-manager/project-manager",
                 functionType: "menu",
-                url: "user-dep-manager",
+                url: "user-dep-manager2-1",
                 parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
                 subNodeFlag: "0",
               }]
@@ -97,7 +97,7 @@ export default [
           name: "v-配置管理2",
           code: "/org-manage",
           functionType: "menu",
-          url: "/org-manage2",
+          url: "/org-manage--2",
           parentId: "1",
           imageUrl: "fsicon-shezhi",
           subNodeFlag: "1",
@@ -106,7 +106,7 @@ export default [
             name: "菜单管理2",
             code: "/config-manager/project-manager",
             functionType: "menu",
-            url: "user-dep-manager",
+            url: "user-dep-manager-1",
             parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
             imageUrl: "",
             subNodeFlag: "0"
@@ -115,7 +115,7 @@ export default [
             name: "机构管理2",
             code: "/config-manager/project-manager",
             functionType: "menu",
-            url: "org-manager",
+            url: "org-manager-2",
             parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
             subNodeFlag: "0"
           }
