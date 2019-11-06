@@ -75,6 +75,9 @@ h6 {
   border-color: $--color-primary;
   color       : $--color-primary;
 }
+.el-button--default.el-button--primary{
+  color: white;
+}
 
 .el-input__icon {
   line-height: 30px;

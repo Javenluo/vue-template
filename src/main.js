@@ -8,7 +8,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import './styles.scss'
 
 import '@/permission' // permission control
-import { SingletonApp, registerFun } from '@ttkv'
+import { SingletonApp, registerFun, store } from '@ttkv'
 import Layout from '@/components/lvbu/layout'
 
 /**
@@ -39,6 +39,7 @@ registerFun('testFun', (str) => {
 
 const app = SingletonApp.getInstance()
 app.setLayout(Layout);
+store.dispatch('tax_user/fetchNav')
 app.start()
 app.testFun('试一试函数注入')
 

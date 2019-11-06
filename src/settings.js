@@ -26,6 +26,12 @@ module.exports = {
    */
   sidebarSearch: true,
 
+  /**
+   * @type {boolean} true | false
+   * @description 是否开启动态路由，对接开放平台可开启，开启后路由表会自动添加到本地路由后面
+   */
+  dynamicRouter: true,
+
   fixedMenue: false,
 
   /**

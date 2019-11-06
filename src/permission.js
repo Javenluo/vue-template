@@ -1,5 +1,5 @@
 import { Message } from '@ttk/vue-ui'
-import { store, router, constantRoutes, concatRouter, generateRouter, postAwait } from '@ttkv'
+import { store, router, constantRoutes, concatRouter, generateRouter, postAwait, resetRouter } from '@ttkv'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@ttkv/lib/utils/auth'
@@ -14,7 +14,7 @@ function getRouters() {
 const routers = getRouters()
 concatRouter(routers)
 router.addRoutes(constantRoutes)
-// store.dispatch('tax_permission/appendRoutes', constantRoutes)
+store.dispatch('tax_permission/appendRoutes', [])
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 // 免登录白名单
@@ -30,23 +30,22 @@ router.beforeEach(async (to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = localStorage.getItem('userInfo')
+      const hasGetUserInfo = localStorage.getItem('tax-user-info')
       let _router = await store.dispatch('tax_permission/getRoutes')
 
-      if (!_router || _router.length <= 0) {
-        let res
-        if (process.env.NODE_ENV === 'development') {
-          const url = `${process.env.VUE_APP_BASE_API}/back/functionService/querySecFunctionNav?appId=${10001006}`
-          res = await postAwait(url, { depId: "44" }) // 获取服务端的路由表
-        } else {
-          // 如果需要动态路由，使用这个逻辑
-          res = await store.dispatch('tax_user/fetchNav');
-        }
-        _router = generateRouter(res.body) // 使用@ttk/vue格式化路由
-        router.addRoutes(_router) // 使用vue-router动态添加路由
-
-        store.dispatch('tax_permission/appendRoutes', _router) // 添加到菜单列表、左侧菜单渲染就是根据这个来做渲染的。
-      }
+      // if (!_router || _router.length <= 0) {
+      //   let res
+      //   if (process.env.NODE_ENV === 'development') {
+      //     const url = `${process.env.VUE_APP_BASE_API}/back/functionService/querySecFunctionNav?appId=${10001006}`
+      //     res = await postAwait(url, { depId: "44" }) // 获取服务端的路由表
+      //   } else {
+      //     // 如果需要动态路由，使用这个逻辑
+      //     res = await store.dispatch('tax_user/fetchNav');
+      //   }
+      //   _router = generateRouter(res.body) // 使用@ttk/vue格式化路由
+      //   router.addRoutes(_router) // 使用vue-router动态添加路由
+      //   store.dispatch('tax_permission/appendRoutes', _router) // 添加到菜单列表、左侧菜单渲染就是根据这个来做渲染的。
+      // }
       if (hasGetUserInfo && _router) {
         if (store.tax_user && !store.tax_user.info) await store.commit('tax_user/TAX_SET_USER_INFO_FROM_LOCAL')
         next()
