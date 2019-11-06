@@ -7,7 +7,7 @@
         <tags-view />
       </sticky>
       <app-main />
-      <right-panel v-if="showSettings">
+      <right-panel v-if="showSettings" :buttonTop="550">
         <settings />
       </right-panel>
     </div>
@@ -139,18 +139,15 @@ export default {
   }
 
   .main-container {
-    min-height: 100%;
-    transition: margin-left 0.28s;
-    position: relative;
-    padding-top: 10px;
-    margin: $headerHeight 10px 20px $sideBarWidth;
-
     .app-main {
       /* 50= navbar  50  */
       min-height: calc(100vh - 50px);
       width: 100%;
       position: relative;
       overflow: hidden;
+      padding: 20px;
+      box-sizing: border-box;
+      background: white;
     }
 
     .fixed-header {

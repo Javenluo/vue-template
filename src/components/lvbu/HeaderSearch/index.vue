@@ -1,8 +1,13 @@
 <template>
   <div :class="{'show':show}" class="header-search">
-    <div class="search">
+    <hamburger
+      :is-active="tax_sidebar.opened"
+      class="collection"
+      :class="{'transform-btn': tax_sidebar.opened}"
+      @toggleClick="toggleSideBar"
+    />
+    <div class="search" :class="{'search-active': tax_sidebar.opened}">
       <el-select
-        v-if="tax_sidebar.opened"
         ref="headerSearchSelect"
         v-model="search"
         :remote-method="querySearch"
@@ -25,11 +30,7 @@
         <i class="icon iconfont fsicon-yihushichaxun search-icon"></i>
       </div>
     </div>
-    <hamburger :is-active="tax_sidebar.opened" class="collection" @toggleClick="toggleSideBar" />
-    <!-- <div class="collection">
-      <i class="icon iconfont fsicon-shouqicaidan"></i>
-      <i class="icon iconfont fsicon-weibiaoti25"></i>
-    </div>-->
+    <!-- <hamburger v-if="tax_sidebar.opened" :is-active="tax_sidebar.opened" class="collection breadcrumb-enter-active" @toggleClick="toggleSideBar" /> -->
   </div>
 </template>
 
@@ -49,6 +50,7 @@ export default {
       search: "",
       options: [],
       searchPool: [],
+      sideBarState: this.$store.getters.tax_sidebar.opened,
       show: false,
       fuse: undefined
     };
@@ -65,6 +67,15 @@ export default {
     },
     searchPool(list) {
       this.initFuse(list);
+    },
+    "tax_sidebar.opened": {
+      handler(value) {
+        if (value) {
+          document.body.addEventListener("click", this.close);
+        } else {
+          document.body.removeEventListener("click", this.close);
+        }
+      }
     }
     // show(value) {
     //   if (value) {
@@ -79,15 +90,22 @@ export default {
   },
   methods: {
     click() {
-      this.show = true; // !this.show;
-      if (this.show) {
-        this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.focus();
+      if (!this.sideBarState && !this.tax_sidebar.opened) {
+        this.$store.dispatch("tax_app/toggleSideBar");
       }
+      this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.focus();
+    },
+    blur() {
+      this.$store.dispatch("tax_app/toggleSideBar", this.sideBarState);
     },
     toggleSideBar() {
       this.$store.dispatch("tax_app/toggleSideBar");
+      this.sideBarState = this.tax_sidebar.opened;
     },
     close() {
+      if (!this.sideBarState) {
+        this.$store.dispatch("tax_app/toggleSideBar", this.sideBarState);
+      }
       this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.blur();
       this.options = [];
       this.show = false;
@@ -155,7 +173,6 @@ export default {
     querySearch(query) {
       if (query !== "") {
         this.options = this.fuse.search(query);
-        console.log("jjjjj", this.options);
       } else {
         this.options = [];
       }
@@ -173,15 +190,17 @@ export default {
   .search {
     position: relative;
     display: inline-block;
-    .header-search-select{
+    .header-search-select {
       width: 190px;
+      display: none;
+      line-height: auto;
     }
     .icon-but {
       width: 180px;
       cursor: pointer;
       height: 30px;
       width: 30px;
-      line-height: 30px;
+      line-height: 22px;
       text-align: center;
       &.active {
         position: absolute;
@@ -192,13 +211,35 @@ export default {
         vertical-align: middle;
       }
     }
+    &.search-active {
+      .header-search-select {
+        display: inline-block;
+      }
+      .icon-but {
+        line-height: 28px;
+      }
+    }
   }
+
   .collection {
     display: inline-block;
     height: 30px;
     width: 30px;
     text-align: center;
     line-height: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #c5c5c5;
+  }
+  .transform-btn {
+    position: absolute;
+    right: 0px;
+    top: 8px;
+    margin-right: 10px;
+    transition: all 0.5s;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border: none;
   }
   .icon {
     margin: 0 !important;
