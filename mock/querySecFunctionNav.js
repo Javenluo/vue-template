@@ -14,7 +14,7 @@ export default [
           gtime: 116
         },
         body: [{
-          code: "/config-manager/index",
+          code: "/org-manage/index",
           functioinId: "283eec11ad9a4a6a8d4fa7f2051f7007",
           functionType: "desk",
           imageUrl: "iconfont fsicon-weibiaoti25",
@@ -34,7 +34,7 @@ export default [
           childSecFunctioinDTOs: [{
             functioinId: "4175e7428ce7408288c24b80689be30f",
             name: "菜单管理",
-            code: "/config-manager/project-manager",
+            code: "/org-manage/project-manager",
             functionType: "menu",
             url: "user-dep-manager",
             parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
@@ -42,7 +42,7 @@ export default [
             childSecFunctioinDTOs: [{
               functioinId: "4175e7428ce7408288c24b80689be30f",
               name: "菜单管理1",
-              code: "/config-manager/project-manager",
+              code: "/org-manage/project-manager",
               functionType: "menu",
               url: "user-dep-manager1",
               parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
@@ -50,7 +50,7 @@ export default [
               childSecFunctioinDTOs: [{
                 functioinId: "4175e7428ce7408288c24b80689be30f",
                 name: "菜单管理1-1",
-                code: "/config-manager/project-manager",
+                code: "/org-manage/project-manager",
                 functionType: "menu",
                 url: "user-dep-manager1-1",
                 parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
@@ -58,7 +58,7 @@ export default [
               }, {
                 functioinId: "4175e7428ce7408288c24b80689be30f",
                 name: "菜单管理1-2",
-                code: "/config-manager/project-manager",
+                code: "/org-manage/project-manager",
                 functionType: "menu",
                 url: "user-dep-manager2",
                 parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
@@ -67,7 +67,7 @@ export default [
             }, {
               functioinId: "4175e7428ce7408288c24b80689be30f",
               name: "菜单管理-2",
-              code: "/config-manager/project-manager",
+              code: "/org-manage/project-manager",
               functionType: "menu",
               url: "user-dep-manager2",
               parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
@@ -75,7 +75,7 @@ export default [
               childSecFunctioinDTOs: [{
                 functioinId: "4175e7428ce7408288c24b80689be30f",
                 name: "菜单管理2-1",
-                code: "/config-manager/project-manager",
+                code: "/org-manage/project-manager",
                 functionType: "menu",
                 url: "user-dep-manager2-1",
                 parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
@@ -85,7 +85,7 @@ export default [
           }, {
             functioinId: "e71fc970852b4d9e9fad9ebe41da53cf",
             name: "机构管理",
-            code: "/config-manager/project-manager",
+            code: "/org-manage/project-manager",
             functionType: "menu",
             url: "org-manager",
             parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
@@ -104,7 +104,7 @@ export default [
           childSecFunctioinDTOs: [{
             functioinId: "4175e7428ce7408288c24b80689be30f",
             name: "菜单管理2",
-            code: "/config-manager/project-manager",
+            code: "/org-manage/project-manager",
             functionType: "menu",
             url: "user-dep-manager-1",
             parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",
@@ -113,7 +113,7 @@ export default [
           }, {
             functioinId: "e71fc970852b4d9e9fad9ebe41da53cf",
             name: "机构管理2",
-            code: "/config-manager/project-manager",
+            code: "/org-manage/project-manager",
             functionType: "menu",
             url: "org-manager-2",
             parentId: "5bc0b657fc9a4e02af66d713c1a19ad4",

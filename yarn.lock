@@ -824,7 +824,7 @@
 
 "@ttk/vue@https://github.com/fx-mobile/vue.git":
   version "1.0.4"
-  resolved "https://github.com/fx-mobile/vue.git#b322a51939625589ce05e58eb38918485819f077"
+  resolved "https://github.com/fx-mobile/vue.git#df7e0524adf70e3440ffd942a61428a4bac638c7"
   dependencies:
     "@ttk/vue-ui" "^1.0.2"
     path-to-regexp "^3.1.0"
