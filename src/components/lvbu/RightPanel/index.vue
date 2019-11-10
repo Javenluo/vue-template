@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { addClass, removeClass } from "@ttkv/lib/utils";
+import { addClass, removeClass } from "@ttkv";
 
 export default {
   name: "RightPanel",

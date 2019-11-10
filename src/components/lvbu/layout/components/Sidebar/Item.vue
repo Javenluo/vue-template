@@ -19,7 +19,7 @@ export default {
     if (icon) {
       // vnodes.push(<i class={`el-icon-${icon}`}></i>);
       vnodes.push(<i class={`icon iconfont ${icon}`}></i>);
-    }else{
+    } else {
       vnodes.push(<span class={`icon iconfont ${icon}`}>&nbsp;</span>);
     }
 

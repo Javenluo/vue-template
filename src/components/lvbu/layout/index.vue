@@ -7,7 +7,7 @@
         <tags-view />
       </sticky>
       <app-main />
-      <right-panel v-if="showSettings" :buttonTop="550">
+      <right-panel v-if="showSettings" :button-top="550">
         <settings />
       </right-panel>
     </div>

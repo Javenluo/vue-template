@@ -26,7 +26,7 @@
 
 <script>
 import path from 'path'
-import { isExternal } from '@ttk/vue/lib/utils/validate'
+import { isExternal } from '@ttkv'
 import Item from './Item'
 import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'

@@ -1,5 +1,4 @@
 import Mock from 'mockjs'
-import { param2Obj } from '@ttk/vue/lib/utils'
 import user from './user'
 import table from './table'
 import querySecFunctionNav from './querySecFunctionNav'
@@ -27,7 +26,21 @@ export function mockXHR() {
     }
     this.proxy_send(...arguments)
   }
-
+  function param2Obj(url) {
+    const search = url.split('?')[1]
+    if (!search) {
+      return {}
+    }
+    return JSON.parse(
+      '{"' +
+      decodeURIComponent(search)
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"')
+        .replace(/\+/g, ' ') +
+      '"}'
+    )
+  }
   function XHR2ExpressReqWrap(respond) {
     return function(options) {
       let result = null

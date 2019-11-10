@@ -14,7 +14,7 @@ export default [
           gtime: 116
         },
         body: [{
-          code: "/org-manage/index",
+          code: "/org-manage/project-manager",
           functioinId: "283eec11ad9a4a6a8d4fa7f2051f7007",
           functionType: "desk",
           imageUrl: "iconfont fsicon-weibiaoti25",

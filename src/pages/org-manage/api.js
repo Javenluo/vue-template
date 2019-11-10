@@ -1,4 +1,4 @@
-import request, { post } from '../utils/request'
+import request, { post } from '@ttkv'
 // import { getToken } from '../utils/auth'
 
 export function login(data) {
@@ -29,5 +29,5 @@ export function logout(token) {
 
 export function getNav({ depId = '2', appId = 10001006 } = { depId: '2', appId: 10001006 }) {
   const url = `/gateway/org/back/functionService/querySecFunctionNav?appId=${appId}`
-  return post(url, {depId})
+  return post(url, { depId })
 }

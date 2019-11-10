@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { isExternal } from "@ttkv/lib/utils/validate";
+import { isExternal } from "@ttkv";
 export default {
   props: {
     to: {

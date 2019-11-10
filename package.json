@@ -14,17 +14,18 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
+    "preview:report": "node build/index.js --preview --report",
     "lint": "eslint --fix --ext .js,.vue src",
     "test:unit": "jest --clearCache && vue-cli-service test:unit",
     "test:ci": "npm run lint && npm run test:unit"
   },
   "dependencies": {
-    "@ttk/vue": "https://github.com/fx-mobile/vue.git",
     "@ttk/vue-ui": "*",
     "axios": "0.18.1",
     "clipboard": "^2.0.4",
+    "element-ui": "^2.12.0",
     "fuse.js": "^3.4.5",
-    "js-cookie": "2.2.0",
+    "js-cookie": "^2.2.1",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
     "path-to-regexp": "2.4.0",
@@ -61,14 +62,11 @@
     "vue-template-compiler": "2.6.10"
   },
   "engines": {
-    "node": ">=8.9",
-    "npm": ">= 3.0.0"
+    "node": ">=10.16.3",
+    "npm": ">= 6.9.0"
   },
   "browserslist": [
-    "> 0.2%",
-    "last 2 versions",
-    "ie 11",
-    "ie 10",
-    "ie 9"
+    "> 1%",
+    "last 2 versions"
   ]
 }

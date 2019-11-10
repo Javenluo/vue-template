@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { validPhone, validUsername } from "@ttkv/lib/utils/validate";
+import { validPhone, validUsername } from "@ttkv";
 export default {
   name: "Login",
   data() {
@@ -169,21 +169,21 @@ export default {
       });
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
           this.loading = true;
-          this.$store
-            .dispatch("tax_user/login", this.loginForm)
-            .then(() => {
-              this.$router.push({
-                path: this.redirect || "/",
-                query: this.otherQuery
-              });
-              this.loading = false;
-            })
-            .catch(() => {
-              this.loading = false;
+          const res = await this.$store.dispatch(
+            "tax_user/login",
+            this.loginForm
+          );
+          const { head } = res;
+          if (head.errorCode === "0") {
+            this.$router.push({
+              path: this.redirect || "/",
+              query: this.otherQuery
             });
+          }
+          this.loading = false;
         } else {
           console.log("error submit!!");
           return false;

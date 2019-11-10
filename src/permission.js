@@ -1,9 +1,7 @@
 import { Message } from '@ttk/vue-ui'
-import { store, router, constantRoutes, concatRouter, generateRouter, postAwait, resetRouter } from '@ttkv'
+import { store, router, constantRoutes, concatRouter, getToken } from '@ttkv'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@ttkv/lib/utils/auth'
-import getPageTitle from '@ttkv/lib/utils/get-page-title'
 
 // 扫描业务代码中views里的.router.js文件，并返回路由数组
 function getRouters() {
@@ -22,7 +20,7 @@ const whiteList = ['/login', '/404'];
 router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
-  document.title = getPageTitle(to.meta.title)
+  document.title = to.meta.title
   // 确定用户是否已经登录
   const hasToken = getToken()
   if (hasToken) {
@@ -31,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done()
     } else {
       const hasGetUserInfo = localStorage.getItem('tax-user-info')
-      let _router = await store.dispatch('tax_permission/getRoutes')
+      const _router = await store.dispatch('tax_permission/getRoutes')
 
       // if (!_router || _router.length <= 0) {
       //   let res

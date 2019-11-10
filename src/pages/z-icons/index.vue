@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import clipboard from "@ttkv/lib/utils/clipboard";
+import clipboard from "@ttkv";
 // import elementIcons from "./element-icons";
 import iconFont from "./icon-font";
 import iconPng from "./icon-png";

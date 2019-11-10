@@ -1,4 +1,4 @@
-import request from '@ttkv/lib/utils/request'
+import { request } from '@ttkv'
 
 export function getList(params) {
   return request({
